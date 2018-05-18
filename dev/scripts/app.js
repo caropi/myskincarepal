@@ -1,131 +1,87 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import skincareItem from './skincareItem';
+// import skincareItem from './skincareItem';
+import InputList from './InputList';
+import firebase from "firebase";
+
+var config = {
+  apiKey: "AIzaSyDk8V33MtF9noyzOrUeOiYP2YquU-Ofd_c",
+  authDomain: "myskincarepal.firebaseapp.com",
+  databaseURL: "https://myskincarepal.firebaseio.com",
+  projectId: "myskincarepal",
+  storageBucket: "myskincarepal.appspot.com",
+  messagingSenderId: "36948592241"
+};
+firebase.initializeApp(config);
+
+// var provider = new firebase.auth.GoogleAuthProvider();
 
 class App extends React.Component {
-  constructor () {
+  //Create checkbox, starting point
+  //On click of checkbox,  add step to their personal list for the respective part of the day (morning/evening)
+  //sort their personal list by the value of each input in ascending order
+  //Skincare step will be pushed to ol on click
+  constructor() {
     super();
     this.state = {
-      personalRoutine: []
+
     };
-    this.removeStep=this.removeStep.bind();
+    this.handleSubmit=this.handleSubmit.bind(this);
   }
-  //Add ability to remove step from their list
-  removeStep(stepName) {
-    console.log('remoove stepName');
-  } 
+  
 
 
-  //On select add step to their personal list for the respective part of the day (morning/evening)
+  componentDidMount() {
 
-  //We want users to be able to check off items as they go 
-  //Skincare step will be pushed to UL on click
+  };
+
+  handleChange(e) {
+  };
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('jeeeiywehfjabe');
+  }
+
+  //
+  //Add ability to remove step from their list (but not with checkbox)
 
 
+  //User should able to check off items as they go - but ensure that it doesn't remove from the list
 
+  render() {
+    return (
+      <div>
+        <header className="wrapper">
+          <h1>My.Skincare.Pal</h1>
+          <div className="instructions" />
+        </header>
+        <main className="wrapper">
+          {/* Routine for Morning */}
+          <section className="routineInput">
+            {/* User checks off morning routine */}
+            <form action="" onSubmit={this.handleSubmit}>
+              <InputList />
+              <input type="submit" onSubmit={this.handleSubmit} value="Add to Routine"/>
+            </form>
 
-    render() {
-      return <div>
-          <header className="wrapper">
-            <h1>My.Skincare.Pal</h1>
-            <div className="instructions" />
-          </header>
-          <main className="wrapper">
-            {/* Routine for Morning */}
-            <section className="morning">
-              <h2>Morning</h2>
-              <form action="">
-                <input type="checkbox" id="oilCleanser" value="1" />
-                <label htmlFor="oilCleanser">Oil cleanser</label>
+            <div className="personalList">
+              <h5>My Personal Routine</h5>
+              
+            </div>
+          </section>
 
-                <input type="checkbox" id="secondCleanser" value="2" />
-                <label htmlFor="secondCleanser">Second Cleanser</label>
-
-                <input type="checkbox" id="toner" value="3" />
-                <label htmlFor="toner">Toner</label>
-
-                <input type="checkbox" id="lotion" value="4" />
-                <label htmlFor="lotion">Lotion</label>
-
-                <input type="checkbox" id="actives" value="5" />
-                <label htmlFor="actives">Actives</label>
-
-                <input type="checkbox" id="prescriptions" value="6" />
-                <label htmlFor="prescriptions">Prescriptions</label>
-
-                <input type="checkbox" id="essenceSerumAmpoule" value="7" />
-                <label htmlFor="essenceSerumAmpoule">Essence/Serum/Ampoule</label>
-
-                <input type="checkbox" id="oil" value="8" />
-                <label htmlFor="oil">Oil</label>
-
-                <input type="checkbox" id="cream" value="9" />
-                <label htmlFor="cream">Cream</label>
-
-                <input type="checkbox" id="eyeCream" value="10" />
-                <label htmlFor="eyeCream">Eye Cream</label>
-
-                <input type="checkbox" id="sleepingPack" value="11" />
-                <label htmlFor="sleepingPack">Sleeping Pack</label>
-
-                <input type="checkbox" id="sunblock" value="12"/>
-                <label htmlFor="sunblock">Sun Block</label>
-              </form>
-
-              <ol>
-                {
-                  this.state.personalRoutine.map((routineItem,i) => {
-                    return <skincareItem
-                    key={i} />
-                  })
-                }
-              </ol>
-            </section>
-
-            <section className="evening">
-              <h2>Evening</h2>
-              <form action="">
-                <input type="checkbox" id="oilCleanser" />
-                <label htmlFor="oilCleanser">Oil Cleanser</label>
-
-                <input type="checkbox" id="secondCleanser" />
-                <label htmlFor="secondCleanser">Second Cleanser</label>
-
-                <input type="checkbox" id="toner" />
-                <label htmlFor="toner">Toner</label>
-
-                <input type="checkbox" id="lotion" />
-                <label htmlFor="lotion">Lotion</label>
-
-                <input type="checkbox" id="actives" />
-                <label htmlFor="actives">Actives</label>
-
-                <input type="checkbox" id="prescriptions" />
-                <label htmlFor="prescriptions">Prescriptions</label>
-
-                <input type="checkbox" id="essenceSerumAmpoule" />
-                <label htmlFor="essenceSerumAmpoule">Essence/Serum/Ampoule</label>
-
-                <input type="checkbox" id="oil" />
-                <label htmlFor="oil">Oil</label>
-
-                <input type="checkbox" id="cream" />
-                <label htmlFor="cream">Cream</label>
-
-                <input type="checkbox" id="eyeCream" />
-                <label htmlFor="eyeCream">Eye Cream</label>
-
-                <input type="checkbox" id="sleepingPack" />
-                <label htmlFor="sleepingPack">Sleeping Pack</label>
-              </form>
-
-              <ol>
-
-              </ol>
-            </section>
-          </main>
-        </div>;
-    }
+        </main>
+        <footer className="wrapper">
+          <h4>
+            Developed and designed by{" "}
+            <a href="http://www.carolinepisano.com">Caroline Pisano</a>.
+            Copyright &copy; 2018. All rights reserved.
+          </h4>
+        </footer>
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
