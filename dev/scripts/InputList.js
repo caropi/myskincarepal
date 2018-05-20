@@ -1,18 +1,17 @@
 import React from "react";
+//add boolean turnery operater true false 
 
-// toggle(event) {
-//    this.setState({checkboxState: !this.state.checkboxState});
-// }
+
 
 class InputList extends React.Component {
     render(){
-        return (<div className="inputContainer">
-            <input type="checkbox" id={this.props.firebaseKey} checked={this.props.selected} onChange={()=>this.props.handleCheckbox(this.props.firebaseKey, this.props.selected)}/>
+        return (
+        <div className="inputContainer">
+            <input type="checkbox" className="visuallyhidden" id={this.props.firebaseKey} checked={this.props.selected} onChange={()=>this.props.handleCheckbox(this.props.firebaseKey, this.props.selected)}/>
             <label htmlFor={this.props.firebaseKey}>
-            <img src={this.props.img} alt={this.props.alt} />
-              {this.props.name}
+            {this.props.name}
             </label>
-          </div>) 
+        </div>) 
     }
 }
 export default InputList;

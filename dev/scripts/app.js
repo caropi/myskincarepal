@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import skincareItem from './skincareItem';
 import InputList from './InputList';
 import SkincareItem from './SkincareItem';
-import firebase from "firebase"; 
+import firebase from 'firebase'; 
+import Timer from './Timer';
 
 const config = {
   apiKey: "AIzaSyDk8V33MtF9noyzOrUeOiYP2YquU-Ofd_c",
@@ -16,11 +16,7 @@ const config = {
 firebase.initializeApp(config);
 
 
-// var provider = new firebase.auth.GoogleAuthProvider();
-
-
 class App extends React.Component {
-  //Skincare step will be pushed to ol on click
   constructor() {
     super();
     this.state = {
@@ -31,10 +27,7 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
-  //sort their personal list by the value of each input in ascending order
-  //items in inputList need to have a default of false
-  //Pulling data from firebase database (am using it like an API) and am turning it into an array to be used in InputList.js
+  
   componentDidMount() {
     const dbRef = firebase.database().ref();
     dbRef.on("value", snapshot => {
@@ -73,9 +66,10 @@ class App extends React.Component {
 
   handleCheckbox(keyToUpdate, selected) {
     firebase.database().ref(`${keyToUpdate}`)
-      .update({
-        selected: selected === true ? false : true
-      });
+    .update({
+      selected: selected === true ? false : true
+    });
+    console.log(selected);
   }
 
   handleSubmit(e) {
@@ -90,57 +84,60 @@ class App extends React.Component {
   //User should able to check off items as they go - but ensure that it doesn't remove from the list
 
   render() {
-    return (
-      <div>
+    return <div>
         <header className="wrapper">
           <h1>My.Skincare.Pal</h1>
+          <h2>
+            Deconstructing something a magazine probably told you to do... One step at a time
+          </h2>
           <div className="instructions" />
         </header>
-        <main className="wrapper">
+        <main className="wrapper inputResultContainer">
           <section className="routineInput">
             <form onSubmit={this.handleSubmit}>
-              {this.state.skincareOptions.map(skincareOption => {
-                return (
-                  <InputList
-                    selected={skincareOption.selected}
-                    firebaseKey={skincareOption.key}
-                    id={skincareOption.key}
-                    handleCheckbox={this.handleCheckbox}
-                    name={skincareOption.name}
-                    img={skincareOption.img}
-                    alt={skincareOption.alt}
-                  />
-                );
+              {this.state.skincareOptions.map((skincareOption,i) => {
+                return <InputList 
+                key ={i} 
+                selected={skincareOption.selected} 
+                firebaseKey={skincareOption.key} 
+                id={skincareOption.key} 
+                handleCheckbox={this.handleCheckbox} 
+                name={skincareOption.name} 
+                img={skincareOption.img} 
+                alt={skincareOption.alt} />;
               })}
-              <input type="submit" value="Add to Personal Routine"/>
             </form>
           </section>
           <section className="results">
             <div className="yourRoutine">
               <h5>My Routine</h5>
               <ul>
-                {this.state.mySkincareItems.map(mySkincareItems=> {
-                  return (
-                    <SkincareItem 
-                    firebaseKey={mySkincareItems.key}
-                    name={mySkincareItems.name}
-                    description={mySkincareItems.description}
-                    />
-                  )
+                {this.state.mySkincareItems.map((mySkincareItems,i) => {
+                  return <SkincareItem 
+                  key={i} 
+                  firebaseKey={mySkincareItems.key} 
+                  name={mySkincareItems.name} 
+                  description={mySkincareItems.description}
+                  img={mySkincareItems.img}
+                  alt={mySkincareItems.alt}/>;
                 })}
               </ul>
+              
             </div>
           </section>
         </main>
         <footer className="wrapper">
+          <h3>
+            My.Skincare.Pal is not a replacement for a dermatologist. Just
+            remember folks, your mileage may vary.
+          </h3>
           <h4>
-            Developed and designed by{" "}
-            <a href="http://www.carolinepisano.com">Caroline Pisano</a>.
-            Copyright &copy; 2018. All rights reserved.
+            Developed and designed by <a href="http://www.carolinepisano.com">
+              Caroline Pisano
+            </a>. Copyright &copy; 2018. All rights reserved.
           </h4>
         </footer>
-      </div>
-    );
+      </div>;
   }
 }
 

@@ -1,3 +1,76 @@
+@import 'setup';
+
+$globalGrey: #f9f9f9;
+$bodytext: #444;
+//global styles
+body {
+    height: 100vh;
+    width: 100vw;
+    background: url('../../assets/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-size: 62.5%;
+    color: $bodytext;
+}
 img {
     width: 50px;
+    fill: $bodytext;
+}
+
+#app {
+    position: relative;
+    header {
+        h1 {
+            position: absolute;
+            transform: rotate(-90deg);
+            bottom: 50%;
+            left: -20px;
+            color: $globalGrey;
+            text-transform: uppercase;
+            text-shadow: 0 0 100px black;
+        }
+    }
+    .inputResultContainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 50px;
+        width: 100vw;
+        padding: 50px;
+        padding-left: 100px;
+        .routineInput,
+        .results {
+            background: transparentize($globalGrey, 0.2);
+            border-radius: 50px;
+            padding: 40px;
+            box-shadow: 0 0 100px #666;
+        }
+        .routineInput:hover,
+        .results:hover {
+            background:transparentize($globalGrey, 0.1);
+        }
+    }
+    .visuallyhidden:not(:focus):not(:active) {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        border: 0;
+        padding: 0;
+        white-space: nowrap;
+        clip-path: inset(100%);
+        clip: rect(0 0 0 0);
+        overflow: hidden;
+    }
+}
+
+
+ul {
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    li {
+        transition: 0.3s;
+        list-style-type: none;
+    }
 }
