@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import skincareItem from './skincareItem';
 import InputList from './InputList';
-import firebase from "firebase";
+import firebase from "firebase"; 
 
-var config = {
+const config = {
   apiKey: "AIzaSyDk8V33MtF9noyzOrUeOiYP2YquU-Ofd_c",
   authDomain: "myskincarepal.firebaseapp.com",
   databaseURL: "https://myskincarepal.firebaseio.com",
@@ -14,73 +14,102 @@ var config = {
 };
 firebase.initializeApp(config);
 
+
 // var provider = new firebase.auth.GoogleAuthProvider();
 
+
 class App extends React.Component {
-  //Create checkbox, starting point
-  //On click of checkbox,  add step to their personal list for the respective part of the day (morning/evening)
-  //sort their personal list by the value of each input in ascending order
   //Skincare step will be pushed to ol on click
   constructor() {
     super();
     this.state = {
-
+      skincareOptions: [],
+      mySkincareItems: []
     };
+    
+    
     this.handleSubmit=this.handleSubmit.bind(this);
   }
   
-
-
+  //sort their personal list by the value of each input in ascending order
+  //items in inputList need to have a default of false
+  
   componentDidMount() {
+    const dbRef = firebase.database().ref();
+    dbRef.on('value', (snapshot) => {
+      const data = snapshot.val();
+      const myskincarepalArray = [];
 
+      for (let entry in data) {
+        myskincarepalArray.push(data[entry]);
+      }
+      console.log(myskincarepalArray);
+      this.setState({skincareOptions:myskincarepalArray})
+    })
+    // const addStep = 
+    //get all of the data from firebase store in state, then pass that data as a prop to input list 
   };
-
+  
   handleChange(e) {
-  };
 
+  };
+  
+  
   handleSubmit(e) {
+    //make axios call in handle submit
+    //On click of checkbox, add step to their personal list for the respective part of the day (morning/evening)
+
     e.preventDefault();
     console.log('jeeeiywehfjabe');
+
+
+    const dbRef = firebase.database().ref('myskincarepal');
+
+    dbRef.push(step)
   }
 
-  //
-  //Add ability to remove step from their list (but not with checkbox)
+  removeStep() {
+    //Add ability to remove step from their list (but not with checkbox)
+    
+  }
+
+
 
 
   //User should able to check off items as they go - but ensure that it doesn't remove from the list
 
   render() {
-    return (
-      <div>
+    return <div>
         <header className="wrapper">
           <h1>My.Skincare.Pal</h1>
           <div className="instructions" />
         </header>
         <main className="wrapper">
-          {/* Routine for Morning */}
           <section className="routineInput">
-            {/* User checks off morning routine */}
             <form action="" onSubmit={this.handleSubmit}>
-              <InputList />
-              <input type="submit" onSubmit={this.handleSubmit} value="Add to Routine"/>
+              <InputList 
+              skincareArray={this.state.skincareOptions}  />
+              <input type="submit" onSubmit={this.handleSubmit} value="Add to Routine" />
             </form>
 
-            <div className="personalList">
-              <h5>My Personal Routine</h5>
-              
+          </section>
+          <section className="results">
+            <div className="morning">
+              <h5>My Routine</h5>
+              <ul>
+
+              </ul>
             </div>
           </section>
-
         </main>
         <footer className="wrapper">
           <h4>
-            Developed and designed by{" "}
-            <a href="http://www.carolinepisano.com">Caroline Pisano</a>.
-            Copyright &copy; 2018. All rights reserved.
+            Developed and designed by <a href="http://www.carolinepisano.com">
+              Caroline Pisano
+            </a>. Copyright &copy; 2018. All rights reserved.
           </h4>
         </footer>
-      </div>
-    );
+      </div>;
   }
 }
 

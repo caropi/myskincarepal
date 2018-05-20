@@ -12,4 +12,4 @@ const skincareItem = (props) => {
         </li>;
 };
 
-export default skincareItem;
+export default SkincareItem;
