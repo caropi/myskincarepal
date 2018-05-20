@@ -1,15 +1,11 @@
 import React from 'react';
 
-const skincareItem = (props) => {
-    return 
+const SkincareItem = (props) => {
+    return (
         <li>
-            <i class="far fa-circle" />
-
-            {/* link to info pop-up */}
-            <a href="">
-            <i class="fas fa-info-circle" />
-            </a>
-        </li>;
+            <h3>{props.name}</h3>
+            <p>{props.description}</p>
+        </li>)
 };
 
 export default SkincareItem;

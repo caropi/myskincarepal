@@ -1,16 +1,18 @@
 import React from "react";
 
-const InputList = (props) => {
-    return props.skincareArray.map((step,i) => {
-        return (
-            <div className="inputContainer" key={i}>
-                <input type="checkbox" id={step.id} value={step.value} />
-                <label htmlFor={step.id}>
-                    <img src={step.img} alt={step.alt}/>
-                    {step.name}
-                </label>
-            </div>
-        )
-    }) 
-};
+// toggle(event) {
+//    this.setState({checkboxState: !this.state.checkboxState});
+// }
+
+class InputList extends React.Component {
+    render(){
+        return (<div className="inputContainer">
+            <input type="checkbox" id={this.props.firebaseKey} checked={this.props.selected} onChange={()=>this.props.handleCheckbox(this.props.firebaseKey, this.props.selected)}/>
+            <label htmlFor={this.props.firebaseKey}>
+            <img src={this.props.img} alt={this.props.alt} />
+              {this.props.name}
+            </label>
+          </div>) 
+    }
+}
 export default InputList;
