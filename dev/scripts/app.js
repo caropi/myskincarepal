@@ -44,18 +44,16 @@ class App extends React.Component {
       mySkincareItems.sort(function(a, b) {
         return a.value - b.value;
       });
-      console.log(mySkincareItems);
       this.setState({
         skincareOptions: myskincarepalArray,
         mySkincareItems: mySkincareItems
       });
     });
-    // console.log(this.state.mySkincareItems);
   }
 
   handleChange(event) {
     const target = event.target;
-    // const value = target.type === "checkbox" ? target.checked : target.value;
+
     const name = target.name;
 
     this.setState({
@@ -70,22 +68,22 @@ class App extends React.Component {
       .update({
         selected: selected === true ? false : true
       });
-    console.log(selected);
   }
 
   handleSubmit(e) {
-    //make axios call in handle submit
-    //On click of checkbox, add step to their personal list for the respective part of the day (morning/evening)
-    //push data on submit to firebase and pull true values to li
+
     e.preventDefault();
     const dbRef = firebase.database().ref("myskincarepal");
   }
 
-  //User should able to check off items as they go - but ensure that it doesn't remove from the list
+
 
   render() {
     return <div>
         <main className="wrapper inputResultContainer">
+          <h1 className="tracking-in-expand responsive">
+            My.Skincare.Pal <img src="../../assets/header.svg" alt="Icon of bubbles" />
+          </h1>
           <h2>
             Deconstructing something a magazine probably told you to do...
             One step at a time
@@ -109,15 +107,15 @@ class App extends React.Component {
               <h5>Your Routine Order and Info</h5>
               <div className="yourRoutineStepContainer">
                 {this.state.mySkincareItems.map((mySkincareItems, i) => {
-                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt}
-                  waitTime={mySkincareItems.waitTime} />;
+                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} waitTime={mySkincareItems.waitTime} />;
                 })}
               </div>
             </div>
             <div className="footerText">
               <h3>
-                My.Skincare.Pal is not a replacement for a dermatologist.
-                Just remember folks, your mileage may vary.
+                My.Skincare.Pal is not a replacement for a dermatologist. Just remember folks, your mileage may vary, and <a href="https://www.reddit.com/r/SkincareAddiction/">
+                  Reddit
+                </a> is your friend.
               </h3>
               <h4>
                 Developed and designed by <a href="http://www.carolinepisano.com">
@@ -131,8 +129,7 @@ class App extends React.Component {
               <h5>You Routine Order and Info</h5>
               <div className="yourRoutineStepContainer">
                 {this.state.mySkincareItems.map((mySkincareItems, i) => {
-                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt}
-                  waitTime={mySkincareItems.waitTime} />;
+                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} waitTime={mySkincareItems.waitTime} />;
                 })}
               </div>
             </div>

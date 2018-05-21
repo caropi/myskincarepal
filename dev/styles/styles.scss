@@ -5,6 +5,7 @@ $bodytext: #444;
 $bodyfont: 'Montserrat', sans-serif;
 $headingfont: 'Quicksand', sans-serif;
 $hipsterPurple: #7E6872;
+$differentPurple: #AC9092;
 
 //global styles
 
@@ -81,6 +82,24 @@ img {
     width: 50px;
     fill: $bodytext;
 }
+
+a {
+    color: $hipsterPurple;
+    text-decoration: none;
+    transition: 0.2s;
+}
+a:hover {
+    color: $differentPurple;
+    border-bottom: 2px solid $differentPurple;
+}
+h1 {
+    color: $globalGrey;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px $hipsterPurple;
+    font-family: $headingfont;
+    font-size: 4rem;
+}
+
 #app {
     position: relative;
     h2 {
@@ -93,17 +112,27 @@ img {
         text-transform: uppercase;
 
     }
+    .responsive {
+        display: none;
+    }
+    
     .headerFixed {
             h1 {
             position: fixed;
             left: -30px;
             writing-mode: vertical-lr;
             transform: rotate(180deg);
-            color: $globalGrey;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px $hipsterPurple;
-            font-family: $headingfont;
-            font-size: 4rem;
+        }
+    }
+    .routineInput {
+        width: 50%;
+        .responsiveShift {
+            display: none;
+        }
+    }
+    @media (max-width:730px) {
+        .routineInput {
+            width: 100%;
         }
     }
     .inputResultContainer{
@@ -125,31 +154,46 @@ img {
                 }
             }
         }
-        .routineInput {
-            width: 50%;
-            .responsiveShift {
-                display: none;
-            }
-        }
+
+
         .selectContainer,
         .footerText,
-        .results {
+        .yourRoutine {
             background: transparentize($globalGrey, 0.2);
             border-radius: 20px;
             padding: 25px;
-            margin: 5%;
             box-shadow: 0 0 100px #666;
             transition: 0.3s;
-            margin-left: 0;
-        }
-        .results {
-            margin: 0;
         }
         .footerText {
-            margin-bottom: 0;
+            margin-top: 25px;
         }
-        .selectContainer {
-            margin-top: 0;
+        .routineInput {
+            margin-right: 5%;
+        }
+
+        .yourRoutine {
+            h3 {
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                font-size: 1rem;
+                text-align: right;
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 730px) {
+            .results {
+                display: none
+            }
+            .responsiveShift {
+                display: inline-block;
+            }
+            .selectContainer,
+            .yourRoutine, {
+                margin: 25px 0 ;
+            }
+            
         }
         form {
             display: grid;
@@ -158,6 +202,7 @@ img {
             grid-template-columns: 31% 31% 31%;
             grid-template-rows: 1fr 1fr 1fr 1fr;
             text-align: center;
+
             label {
                 display: flex;
                 justify-content: center;
@@ -178,45 +223,80 @@ img {
                 border: 1px solid $hipsterPurple;
             }
         }
+        @media (max-width: 1020px) {
+            form {
+                grid-template-columns: 50% 50%;
+                label {
+                    height: 60px;
+                }
+
+            }
+        }
         .selectContainer:hover,
         .footerText:hover,
-        .results:hover {
+        .yourRoutine:hover {
             background:transparentize($globalGrey, 0.1);
         }
     }
-
-        .results {
-            width: 50%;
-            margin-top: 0;
-            position: relative;
-            h5 {
-                font-size: 1.4rem;
-                border: 1px solid $hipsterPurple;
-                display: inline-block;
-                padding: 1%;
-                margin: 0;
-            }
-            .resultsStep {
-                clear: both;
-                height: auto;
-                h3 {
-                    text-transform: uppercase;
-                    letter-spacing: 3px;
-                    font-size: 1rem;
-                    text-align: right;
-                }
-                .description {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: flex-start;
-                    align-items: center;
-                }
+    @media (max-width: 500px) {
+        .inputResultContainer {
+            padding: 50px 15px;
+            display: flex;
+            flex-direction: column;
+            h1 {
+                font-size: 2.5rem;
+                width: 100%;
+                position: relative;
                 img {
-                    float: left;
-                    margin-right: 10px;
+                    position: absolute;
+                }
+
+            }
+            .responsive {
+                display: inline;
+            }
+            .headerFixed {
+                h1 {
+                    display: none;
                 }
             }
+            // padding: 50px 15px;
+            .routineInput {
+                clear: both;
+                margin-right: 0
+            }
+        }
+    }
 
+    h5 {
+        font-size: 1.4rem;
+        color: $hipsterPurple;
+        display: inline-block;
+        padding: 1%;
+        margin: 0 0 10px 0;
+        text-transform: uppercase;
+    }
+    .results {
+        width: 50%;
+        position: relative;
+        
+        .resultsStep {
+            clear: both;
+            height: auto;
+        }
+        
+    }
+    .yourRoutine {
+        .description {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        img {
+            float: left;
+            margin-right: 10px;
+        }
     }
     .visuallyhidden:not(:focus){
         display: none;
