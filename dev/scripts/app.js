@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import InputList from "./InputList";
 import SkincareItem from "./SkincareItem";
 import firebase from "firebase";
-import Timer from "./Timer";
+
 
 const config = {
   apiKey: "AIzaSyDk8V33MtF9noyzOrUeOiYP2YquU-Ofd_c",
@@ -86,19 +86,31 @@ class App extends React.Component {
   render() {
     return <div>
         <main className="wrapper inputResultContainer">
-            <h2>
-              Deconstructing something a magazine probably told you to do...
-              One step at a time
-            </h2>
-            <div className="headerFixed">
-              <h1>My.Skincare.Pal</h1>
-            </div>
+          <h2>
+            Deconstructing something a magazine probably told you to do...
+            One step at a time
+          </h2>
+          <div className="headerFixed">
+            <h1 className="tracking-in-expand">
+              My.Skincare.Pal <img src="../../assets/header.svg" alt="Icon of bubbles" />
+            </h1>
+          </div>
           <section className="routineInput">
-            <form onSubmit={this.handleSubmit}>
-              {this.state.skincareOptions.map((skincareOption, i) => {
-                return <InputList key={i} selected={skincareOption.selected} firebaseKey={skincareOption.key} id={skincareOption.key} handleCheckbox={this.handleCheckbox} name={skincareOption.name} img={skincareOption.img} alt={skincareOption.alt} />;
+            <div className="selectContainer">
+              <h5> Select Skincare items you already own</h5>
+              <form onSubmit={this.handleSubmit}>
+                {this.state.skincareOptions.map((skincareOption, i) => {
+                  return <InputList key={i} selected={skincareOption.selected} firebaseKey={skincareOption.key} id={skincareOption.key} handleCheckbox={this.handleCheckbox} name={skincareOption.name} img={skincareOption.img} alt={skincareOption.alt} />;
+                })}
+              </form>
+            </div>
+
+            <div className="yourRoutine responsiveShift">
+              <h5>Your Routine Info</h5>
+              {this.state.mySkincareItems.map((mySkincareItems, i) => {
+                return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} />;
               })}
-            </form>
+            </div>
             <div className="footerText">
               <h3>
                 My.Skincare.Pal is not a replacement for a dermatologist.
@@ -113,11 +125,10 @@ class App extends React.Component {
           </section>
           <section className="results">
             <div className="yourRoutine">
-              <h5>My Routine</h5>
-                {this.state.mySkincareItems.map((mySkincareItems, i) => {
-                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} />;
-                })}
-
+              <h5>You Routine Info</h5>
+              {this.state.mySkincareItems.map((mySkincareItems, i) => {
+                return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} />;
+              })}
             </div>
           </section>
         </main>
