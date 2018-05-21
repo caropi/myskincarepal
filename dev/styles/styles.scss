@@ -189,27 +189,34 @@ img {
             width: 50%;
             margin-top: 0;
             position: relative;
+            h5 {
+                font-size: 1.4rem;
+                border: 1px solid $hipsterPurple;
+                display: inline-block;
+                padding: 1%;
+                margin: 0;
+            }
             .resultsStep {
                 clear: both;
                 height: auto;
                 h3 {
                     text-transform: uppercase;
+                    letter-spacing: 3px;
+                    font-size: 1rem;
+                    text-align: right;
                 }
                 .description {
-                    clear: both;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: center;
                 }
                 img {
                     float: left;
+                    margin-right: 10px;
                 }
             }
-            .resultStep:before {
-            counter-increment: section;   
-            content: counters(section, ".") " "; 
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            font-size: 3em;
-        }
+
     }
     .visuallyhidden:not(:focus){
         display: none;

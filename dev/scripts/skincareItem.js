@@ -10,7 +10,7 @@ const SkincareItem = (props) => {
                     <p>
                         {props.description}
                     </p>
-                        <i className="fas fa-stopwatch" />
+                        <i className="fas fa-stopwatch" /><strong> Time to wait before moving to next step:</strong> {props.waitTime}
                     <p />
                 </div>
             </div>
