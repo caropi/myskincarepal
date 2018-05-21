@@ -107,9 +107,11 @@ class App extends React.Component {
 
             <div className="yourRoutine responsiveShift">
               <h5>Your Routine Info</h5>
-              {this.state.mySkincareItems.map((mySkincareItems, i) => {
-                return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} />;
-              })}
+              <div className="yourRoutineStepContainer">
+                {this.state.mySkincareItems.map((mySkincareItems, i) => {
+                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} />;
+                })}
+              </div>
             </div>
             <div className="footerText">
               <h3>
@@ -126,9 +128,11 @@ class App extends React.Component {
           <section className="results">
             <div className="yourRoutine">
               <h5>You Routine Info</h5>
-              {this.state.mySkincareItems.map((mySkincareItems, i) => {
-                return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} />;
-              })}
+              <div className="yourRoutineStepContainer">
+                {this.state.mySkincareItems.map((mySkincareItems, i) => {
+                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} />;
+                })}
+              </div>
             </div>
           </section>
         </main>

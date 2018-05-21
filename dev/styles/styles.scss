@@ -83,7 +83,6 @@ img {
 }
 #app {
     position: relative;
-
     h2 {
         position: absolute;
         top: 0;
@@ -143,17 +142,20 @@ img {
             transition: 0.3s;
             margin-left: 0;
         }
+        .results {
+            margin: 0;
+        }
         .footerText {
             margin-bottom: 0;
         }
         .selectContainer {
             margin-top: 0;
-
         }
         form {
             display: grid;
-            grid-gap: 20px;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 3%;
+            grid-row-gap: 15px;
+            grid-template-columns: 31% 31% 31%;
             grid-template-rows: 1fr 1fr 1fr 1fr;
             text-align: center;
             label {
@@ -181,17 +183,18 @@ img {
         .results:hover {
             background:transparentize($globalGrey, 0.1);
         }
+    }
 
         .results {
             width: 50%;
-            .yourRoutine {
-                display: flex;
-                flex-flow: row wrap;
-            }
+            margin-top: 0;
+            position: relative;
             .resultsStep {
-                width: 40%;
                 clear: both;
                 height: auto;
+                h3 {
+                    text-transform: uppercase;
+                }
                 .description {
                     clear: both;
                 }
@@ -199,9 +202,17 @@ img {
                     float: left;
                 }
             }
+            .resultStep:before {
+            counter-increment: section;   
+            content: counters(section, ".") " "; 
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            font-size: 3em;
         }
     }
     .visuallyhidden:not(:focus){
         display: none;
     }
+    
 }
