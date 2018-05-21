@@ -23,21 +23,26 @@ img {
 }
 #app {
     position: relative;
-    h1 {
-        position: absolute;
-        transform: rotate(-90deg);
-        margin: 0;
-        left: 0;
-        top:0
-        color: $globalGrey;
-        text-transform: uppercase;
-        text-shadow: 0 0 20px black;
-        font-family: $headingfont;
-        font-size: 4rem;
-    }
+
     h2 {
         position: absolute;
         top: 0;
+        text-shadow: 0 0 20px $globalGrey;
+        font-weight: 300;
+
+    }
+    .headerFixed {
+            h1 {
+            position: fixed;
+            left: -30px;
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            color: $globalGrey;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px black;
+            font-family: $headingfont;
+            font-size: 4rem;
+        }
     }
     .inputResultContainer{
         display: flex;
@@ -65,14 +70,19 @@ img {
         .footerText,
         .results {
             background: transparentize($globalGrey, 0.2);
-            border-radius: 50px;
+            border-radius: 20px;
             padding: 40px;
             margin: 5%;
             box-shadow: 0 0 100px #666;
             transition: 0.3s;
+            margin-left: 0;
         }
         form {
             margin-top: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            text-align: center;
         }
         form:hover,
         .footerText:hover,

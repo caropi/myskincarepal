@@ -85,12 +85,14 @@ class App extends React.Component {
 
   render() {
     return <div>
-            <h1>My.Skincare.Pal</h1>
         <main className="wrapper inputResultContainer">
             <h2>
               Deconstructing something a magazine probably told you to do...
               One step at a time
             </h2>
+            <div className="headerFixed">
+              <h1>My.Skincare.Pal</h1>
+            </div>
           <section className="routineInput">
             <form onSubmit={this.handleSubmit}>
               {this.state.skincareOptions.map((skincareOption, i) => {
@@ -112,11 +114,10 @@ class App extends React.Component {
           <section className="results">
             <div className="yourRoutine">
               <h5>My Routine</h5>
-              <ul>
                 {this.state.mySkincareItems.map((mySkincareItems, i) => {
                   return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} />;
                 })}
-              </ul>
+
             </div>
           </section>
         </main>
