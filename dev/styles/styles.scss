@@ -2,6 +2,10 @@
 
 $globalGrey: #f9f9f9;
 $bodytext: #444;
+$bodyfont: 'Montserrat', sans-serif;
+$headingfont: 'Quicksand', sans-serif;
+
+
 //global styles
 body {
     height: 100vh;
@@ -11,66 +15,78 @@ body {
     background-repeat: no-repeat;
     font-size: 62.5%;
     color: $bodytext;
+    font-family: $bodyfont
 }
 img {
     width: 50px;
     fill: $bodytext;
 }
-
 #app {
     position: relative;
-    header {
-        h1 {
-            position: absolute;
-            transform: rotate(-90deg);
-            bottom: 50%;
-            left: -20px;
-            color: $globalGrey;
-            text-transform: uppercase;
-            text-shadow: 0 0 100px black;
-        }
+    h1 {
+        position: absolute;
+        transform: rotate(-90deg);
+        margin: 0;
+        left: 0;
+        top:0
+        color: $globalGrey;
+        text-transform: uppercase;
+        text-shadow: 0 0 20px black;
+        font-family: $headingfont;
+        font-size: 4rem;
+    }
+    h2 {
+        position: absolute;
+        top: 0;
     }
     .inputResultContainer{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: row;
         grid-gap: 50px;
-        width: 100vw;
+        width: 100%;
         padding: 50px;
         padding-left: 100px;
-        .routineInput,
+        ul {
+            padding: 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            li {
+                transition: 0.3s;
+                list-style-type: none;
+                img {
+                    float: left;
+                }
+            }
+        }
+        .routineInput {
+            width: 50%;
+        }
+        form,
+        .footerText,
         .results {
             background: transparentize($globalGrey, 0.2);
             border-radius: 50px;
             padding: 40px;
+            margin: 5%;
             box-shadow: 0 0 100px #666;
+            transition: 0.3s;
         }
-        .routineInput:hover,
+        form {
+            margin-top: 0;
+        }
+        form:hover,
+        .footerText:hover,
         .results:hover {
             background:transparentize($globalGrey, 0.1);
         }
+        .footer-text {
+            margin-bottom: 0;
+        }
+        .results {
+            width: 50%;
+        }
     }
-    .visuallyhidden:not(:focus):not(:active) {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        margin: -1px;
-        border: 0;
-        padding: 0;
-        white-space: nowrap;
-        clip-path: inset(100%);
-        clip: rect(0 0 0 0);
-        overflow: hidden;
-    }
-}
-
-
-ul {
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
-    li {
-        transition: 0.3s;
-        list-style-type: none;
+    .visuallyhidden:not(:focus){
+        display: none;
     }
 }
