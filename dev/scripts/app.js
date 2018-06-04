@@ -41,7 +41,7 @@ class App extends React.Component {
         return skincare.selected === true;
       });
 
-      mySkincareItems.sort(function(a, b) {
+      mySkincareItems.sort(function (a, b) {
         return a.value - b.value;
       });
       this.setState({
@@ -80,62 +80,62 @@ class App extends React.Component {
 
   render() {
     return <div>
-        <main className="wrapper inputResultContainer">
-          <h1 className="tracking-in-expand responsive">
+      <main className="wrapper inputResultContainer">
+        <h1 className="tracking-in-expand responsive">
+          My.Skincare.Pal <img src="../../assets/header.svg" alt="Icon of bubbles" />
+        </h1>
+        <h2>
+          Deconstructing something a magazine probably told you to do...
+          One step at a time
+          </h2>
+        <div className="headerFixed">
+          <h1 className="tracking-in-expand">
             My.Skincare.Pal <img src="../../assets/header.svg" alt="Icon of bubbles" />
           </h1>
-          <h2>
-            Deconstructing something a magazine probably told you to do...
-            One step at a time
-          </h2>
-          <div className="headerFixed">
-            <h1 className="tracking-in-expand">
-              My.Skincare.Pal <img src="../../assets/header.svg" alt="Icon of bubbles" />
-            </h1>
+        </div>
+        <section className="routineInput">
+          <div className="selectContainer">
+            <h5> Select Skincare items you already own</h5>
+            <form onSubmit={this.handleSubmit}>
+              {this.state.skincareOptions.map((skincareOption, i) => {
+                return <InputList key={i} selected={skincareOption.selected} firebaseKey={skincareOption.key} id={skincareOption.key} handleCheckbox={this.handleCheckbox} name={skincareOption.name} img={skincareOption.img} alt={skincareOption.alt} />;
+              })}
+            </form>
           </div>
-          <section className="routineInput">
-            <div className="selectContainer">
-              <h5> Select Skincare items you already own</h5>
-              <form onSubmit={this.handleSubmit}>
-                {this.state.skincareOptions.map((skincareOption, i) => {
-                  return <InputList key={i} selected={skincareOption.selected} firebaseKey={skincareOption.key} id={skincareOption.key} handleCheckbox={this.handleCheckbox} name={skincareOption.name} img={skincareOption.img} alt={skincareOption.alt} />;
-                })}
-              </form>
-            </div>
 
-            <div className="yourRoutine responsiveShift">
-              <h5>Your Routine Order and Info</h5>
-              <div className="yourRoutineStepContainer">
-                {this.state.mySkincareItems.map((mySkincareItems, i) => {
-                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} waitTime={mySkincareItems.waitTime} />;
-                })}
-              </div>
+          <div className="yourRoutine responsiveShift">
+            <h5>Your Routine Order and Info</h5>
+            <div className="yourRoutineStepContainer">
+              {this.state.mySkincareItems.map((mySkincareItems, i) => {
+                return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} waitTime={mySkincareItems.waitTime} />;
+              })}
             </div>
-            <div className="footerText">
-              <h3>
-                My.Skincare.Pal is not a replacement for a dermatologist. Just remember folks, your mileage may vary, and <a href="https://www.reddit.com/r/SkincareAddiction/">
-                  Reddit
+          </div>
+          <div className="footerText">
+            <h3>
+              My.Skincare.Pal is not a replacement for a dermatologist. Just remember folks, your mileage may vary, and <a href="https://www.reddit.com/r/SkincareAddiction/">
+                Reddit
                 </a> is your friend.
               </h3>
-              <h4>
-                Developed and designed by <a href="http://www.carolinepisano.com">
-                  Caroline Pisano
+            <h4>
+              Developed and designed by <a href="http://www.carolinepisano.com">
+                Caroline Pisano
                 </a>. Copyright &copy; 2018. All rights reserved.
               </h4>
+          </div>
+        </section>
+        <section className="results">
+          <div className="yourRoutine">
+            <h5>You Routine Order and Info</h5>
+            <div className="yourRoutineStepContainer">
+              {this.state.mySkincareItems.map((mySkincareItems, i) => {
+                return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} waitTime={mySkincareItems.waitTime} />;
+              })}
             </div>
-          </section>
-          <section className="results">
-            <div className="yourRoutine">
-              <h5>You Routine Order and Info</h5>
-              <div className="yourRoutineStepContainer">
-                {this.state.mySkincareItems.map((mySkincareItems, i) => {
-                  return <SkincareItem key={i} firebaseKey={mySkincareItems.key} name={mySkincareItems.name} description={mySkincareItems.description} img={mySkincareItems.img} alt={mySkincareItems.alt} waitTime={mySkincareItems.waitTime} />;
-                })}
-              </div>
-            </div>
-          </section>
-        </main>
-      </div>;
+          </div>
+        </section>
+      </main>
+    </div>;
   }
 }
 
