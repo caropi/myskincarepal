@@ -73,10 +73,16 @@ body {
     width: 100vw;
     background: url('../../assets/background.jpg');
     background-size: cover;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     font-size: 62.5%;
     color: $bodytext;
-    font-family: $bodyfont
+    font-family: $bodyfont;
+    @media (max-width: 500px) {
+        body {
+            background-attachment:none;
+        }
+    }
 }
 img {
     width: 50px;
@@ -117,15 +123,15 @@ h1 {
     }
     
     .headerFixed {
-            h1 {
-            position: fixed;
-            left: -30px;
-            writing-mode: vertical-lr;
-            transform: rotate(180deg);
-        }
+        position: fixed;
+        top: 50px;
+        left: -2%;
+        writing-mode: vertical-lr;
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
     }
     .routineInput {
-        width: 50%;
+        width: 35%;
         .responsiveShift {
             display: none;
         }
@@ -278,7 +284,7 @@ h1 {
         text-transform: uppercase;
     }
     .results {
-        width: 50%;
+        width: 65%;
         position: relative;
         
         .resultsStep {
@@ -293,6 +299,9 @@ h1 {
             flex-direction: row;
             justify-content: flex-start;
             align-items: center;
+            p {
+                font-size: 1rem;
+            }
         }
         img {
             float: left;
